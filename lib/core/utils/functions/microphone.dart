@@ -91,6 +91,6 @@ class Microphone extends StatelessWidget {
   Future<String> getFilePath() async {
     Directory appDocDirectory = await getApplicationDocumentsDirectory();
     String timestamp = DateTime.now().toIso8601String();
-    return appDocDirectory.path + '/recording_' + timestamp + '.m4a';
+    return '${appDocDirectory.path}/recording_$timestamp.m4a';
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+ bool isRecording=false;
 final kColourPrimary = Colors.red[800];
 final kColourBackground = Colors.lightGreen[200];
 
