@@ -1,11 +1,14 @@
 import 'package:asdc/constatns.dart';
 import 'package:asdc/core/utils/functions/recording_row.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class RecordingsStream extends StatefulWidget {
+  const RecordingsStream({super.key});
+
   @override
   _RecordingsStreamState createState() => _RecordingsStreamState();
 }
@@ -56,8 +59,8 @@ class _RecordingsStreamState extends State<RecordingsStream> {
           }
           return Expanded(
             child: ListView(
-              children: rows,
               reverse: true,
+              children: rows,
             ),
           );
         } else {
@@ -74,23 +77,27 @@ class _RecordingsStreamState extends State<RecordingsStream> {
   void startPlaying(String filename) async {
     final url =
         await FirebaseStorage.instance.ref().child(filename).getDownloadURL();
-    int result = await audioPlayer.play(url);
+    int result = audioPlayer.play(url) as int;
     if (result == 1) {
       isPlaying = true;
     } else {
-      print('Error playing file.');
+      if (kDebugMode) {
+        print('Error playing file.');
+      }
     }
   }
 
   void stopPlaying(String filename) async {
-    int result = await audioPlayer.stop();
+    int result =  audioPlayer.stop() as int;
     if (result == 1) {
       isPlaying = false;
       if (currentlyPlayingFilename != null) {
         startPlaying(filename);
       }
     } else {
-      print("Can't stop playing!");
+      if (kDebugMode) {
+        print("Can't stop playing!");
+      }
     }
   }
 }

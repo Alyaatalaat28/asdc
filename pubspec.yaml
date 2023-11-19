@@ -31,10 +31,11 @@ dependencies:
   audioplayers: ^1.2.0
   cloud_firestore: ^4.13.1
   cupertino_icons: ^1.0.2
-  fancy_audio_recorder: ^0.0.1
+  firebase_core: ^2.22.0
   firebase_storage: ^11.5.1
   flutter:
     sdk: flutter
+  flutter_audio_recorder2: ^0.0.2
   path_provider: ^2.1.1
   permission_handler: ^11.0.1
   timeago: ^3.6.0

@@ -1,9 +1,11 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:asdc/constatns.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:audio_recorder/audio_recorder.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -11,13 +13,13 @@ class Microphone extends StatelessWidget {
   final bool isRecording;
   final Function onStartRecording;
   final Function onStopRecording;
+    FlutterAudioRecorder2? recorder;
 
-  Microphone({
+   Microphone({super.key, 
     required this.isRecording,
     required this.onStartRecording,
     required this.onStopRecording,
   });
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -44,9 +46,9 @@ class Microphone extends StatelessWidget {
       if (await hasPermissions()) {
         onStartRecording();
         String path = await getFilePath();
-        await AudioRecorder.start(
-          path: path,
-          audioOutputFormat: AudioOutputFormat.AAC,
+         FlutterAudioRecorder2(
+          path,
+          audioFormat: AudioFormat.AAC,
         );
       }
     } catch (error) {
@@ -57,8 +59,8 @@ class Microphone extends StatelessWidget {
   void stopRecording() async {
     if (isRecording) {
       onStopRecording();
-      var recording = await AudioRecorder.stop();
-      sendRecording(recording.path);
+      var recording = await recorder!.stop();
+      sendRecording(recording!.path!);
     }
   }
 
@@ -73,7 +75,7 @@ class Microphone extends StatelessWidget {
     switch (status) {
       case PermissionStatus.granted:
         return true;
-      case PermissionStatus.undetermined:
+      case PermissionStatus.restricted:
       case PermissionStatus.denied:
         Permission.microphone.request();
         break;
@@ -84,6 +86,10 @@ class Microphone extends StatelessWidget {
         print('Microsoft access is permanently denied. '
             'You have to go to Settings to enable it.');
         break;
+      case PermissionStatus.limited:
+        print('Microphone access is limited.');
+      case PermissionStatus.provisional:
+        print('Microphone access is provisional.');
     }
     return false;
   }

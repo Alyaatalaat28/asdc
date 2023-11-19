@@ -7,7 +7,7 @@ class RecordingRow extends StatelessWidget {
   final String currentlyPlayingFilename;
   final Function onTap;
 
-  const RecordingRow({
+  const RecordingRow({super.key, 
     required this.filename,
     required this.currentlyPlayingFilename,
     required this.onTap,
