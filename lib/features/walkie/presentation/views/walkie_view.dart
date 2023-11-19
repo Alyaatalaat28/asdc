@@ -10,7 +10,7 @@ class WalkieView extends StatelessWidget {
   Widget build(BuildContext context) {
     return  SafeArea(
       child: Scaffold(
-        backgroundColor:isRecording?kRecording:primaryColor ,
+        backgroundColor:isRecording?kColourIsRecording:kColourPrimary ,
        body:const WalkieViewBody(),
     ));
   }

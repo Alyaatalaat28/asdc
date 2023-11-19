@@ -12,7 +12,7 @@ class _WalkieViewBodyState extends State<WalkieViewBody> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      color: kBackground,
+      color: kColourBackground,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
