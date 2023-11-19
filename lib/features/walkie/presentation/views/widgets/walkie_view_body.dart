@@ -1,4 +1,5 @@
 import 'package:asdc/constatns.dart';
+import 'package:asdc/core/utils/functions/recording_stream.dart';
 import 'package:flutter/material.dart';
 
 class WalkieViewBody extends StatefulWidget {
@@ -17,7 +18,7 @@ class _WalkieViewBodyState extends State<WalkieViewBody> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-         RecordingStream(),
+         RecordingsStream(),
          
         ],
       ),

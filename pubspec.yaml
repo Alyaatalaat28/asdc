@@ -28,13 +28,16 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  audioplayers: ^5.2.1
+  audioplayers: ^1.2.0
+  cloud_firestore: ^4.13.1
   cupertino_icons: ^1.0.2
   fancy_audio_recorder: ^0.0.1
+  firebase_storage: ^11.5.1
   flutter:
     sdk: flutter
   path_provider: ^2.1.1
   permission_handler: ^11.0.1
+  timeago: ^3.6.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

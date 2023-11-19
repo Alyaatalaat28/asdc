@@ -1,6 +1,5 @@
 import 'package:asdc/constatns.dart';
 import 'package:flutter/material.dart';
-import 'package:iamrick/utilities/constants.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class RecordingRow extends StatelessWidget {
@@ -8,7 +7,7 @@ class RecordingRow extends StatelessWidget {
   final String currentlyPlayingFilename;
   final Function onTap;
 
-  RecordingRow({
+  const RecordingRow({
     required this.filename,
     required this.currentlyPlayingFilename,
     required this.onTap,
